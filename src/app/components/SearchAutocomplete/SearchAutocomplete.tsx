@@ -1,22 +1,19 @@
 "use client";
 
-import { getCities } from '@/app/utils/getCities';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Link from 'next/link';
 import { CitiesJsonData } from '@/app/constants/cities';
 
 const SearchAutocomplete = () => {
 
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [allCities, setAllCities] = useState<any[]>(CitiesJsonData);
   const [showAutoComplete, setShowAutoComplete] = useState<boolean>(false);
 
   const autoCompleteRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const filteredCities = searchQuery.trim() === "" ? [] : allCities.filter((city: any) => city.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredCities = searchQuery.trim() === "" ? [] : CitiesJsonData.filter((city: any) => city.toLowerCase().includes(searchQuery.toLowerCase()));
 
 
   const handleOutsideClick = (e: MouseEvent) => {
@@ -94,7 +91,7 @@ const SearchAutocomplete = () => {
                     <ul className='flex flex-col gap-1'>
                       {filteredCities.map((city: any, index: number) => {
                         return (
-                          <Link href={`/weather?city=${city?.toLowerCase()}`} key={index} className='px-2 py-1 text-gray-800 hover:bg-gray-300 rounded-md'>
+                          <Link href={`/weather/${city?.toLowerCase()}`} key={index} className='px-2 py-1 text-gray-800 hover:bg-gray-300 rounded-md'>
                             {city}
                           </Link>
                         )

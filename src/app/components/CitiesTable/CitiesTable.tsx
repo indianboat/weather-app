@@ -147,12 +147,7 @@ const CitiesTable = () => {
                                       <Link
                                         target="_blank"
                                         className="min-w-max text-sm text-blue-600 decoration-2 hover:underline"
-                                        href={{
-                                          pathname: "/weather",
-                                          query: {
-                                            city: data.ascii_name.toLowerCase()
-                                          }
-                                        }}
+                                        href={`/weather/${data.ascii_name.toLowerCase()}`}
                                       >
                                         {data.ascii_name}
                                       </Link>

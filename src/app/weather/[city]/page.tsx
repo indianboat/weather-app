@@ -2,15 +2,16 @@
 
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { getWeather } from '../utils/getWeather';
-import { WeatherData } from '../types/weather.types';
+import { getWeather } from '../../utils/getWeather';
+import { WeatherData } from '../../types/weather.types';
 import Image from 'next/image';
-import Forecast from '../components/Forecast/Forecast';
-import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
+import Forecast from '../../components/Forecast/Forecast';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
-const WeatherPage = () => {
+const WeatherPage = ({ params }: any) => {
 
-  const city: any = useSearchParams().get("city");
+  const city: string = params.city;
+
   const [weatherData, setWeatherData] = useState<WeatherData>();
   const [loading, setLoading] = useState<Boolean>(true);
 
@@ -24,7 +25,7 @@ const WeatherPage = () => {
       {
         loading || !weatherData ?
 
-          <span className='absolute inset-0 w-full h-full backdrop-blur-sm flex justify-center items-center'><LoadingSpinner /></span> :
+          <span className='absolute inset-0 w-full h-full backdrop-blur-sm flex justify-center items-center'><LoadingSpinner size={10} /></span> :
           Number(weatherData?.cod) === 404 ?
 
             <>
