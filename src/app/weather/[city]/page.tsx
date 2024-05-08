@@ -10,7 +10,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const WeatherPage = ({ params }: any) => {
 
-  const city: string = params.city;
+  const city: string = params.city.replaceAll("-", " ");
 
   const [weatherData, setWeatherData] = useState<WeatherData>();
   const [loading, setLoading] = useState<Boolean>(true);

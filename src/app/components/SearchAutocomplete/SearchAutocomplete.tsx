@@ -91,7 +91,7 @@ const SearchAutocomplete = () => {
                     <ul className='flex flex-col gap-1'>
                       {filteredCities.map((city: any, index: number) => {
                         return (
-                          <Link href={`/weather/${city?.toLowerCase()}`} key={index} className='px-2 py-1 text-gray-800 hover:bg-gray-300 rounded-md'>
+                          <Link href={`/weather/${city?.toLowerCase().replaceAll(" ", "-")}`} key={index} className='px-2 py-1 text-gray-800 hover:bg-gray-300 rounded-md'>
                             {city}
                           </Link>
                         )
